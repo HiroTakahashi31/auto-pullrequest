@@ -5,6 +5,10 @@ on:
     - cron: "0 15 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   auto-merge-dev2stage:
     runs-on: ubuntu-latest
