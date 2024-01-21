@@ -1,0 +1,22 @@
+name: Auto merge dev2main
+
+on:
+  schedule:
+    - cron: "0 15 * * *"
+  workflow_dispatch:
+
+jobs:
+  auto-merge-dev2stage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: develop
+      - name: 【定期実行】Create Pull Request dev2stage
+        id: create-pull-request
+        env:
+          GH_TOKEN: ${{ secrets.AUTO_DEP_TOKEN }}
+        run: |
+          PULL_REQUEST_URI=$(gh pr create -B main -t 【定期実行】dev2stage -l 'auto merge' -b "")
+          echo "::set-output name=PULL_REQUEST_URI::$PULL_REQUEST_URI"
