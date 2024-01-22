@@ -24,9 +24,9 @@ jobs:
           TZ: 'Asia/Tokyo'
         run: |
           gh pr create \
-            -B main
-            -t "`TZ=Asia/Tokyo date "+%Y%m%d"`【定期実行】dev2stage"
-            -b ""
+            --base main
+            --title "`TZ=Asia/Tokyo date "+%Y%m%d"`【定期実行】dev2stage"
+            --body ""
           
           # PULL_REQUEST_URI=$(gh pr create -B main -t "【定期実行】dev2stage" -b "")
           # echo "PULL_REQUEST_URI=PULL_REQUEST_URI" >> $GITHUB_OUTPUT
