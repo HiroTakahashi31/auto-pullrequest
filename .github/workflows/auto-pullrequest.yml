@@ -23,6 +23,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           TZ: 'Asia/Tokyo'
         run: |
-          pr_title=【定期実行】$(date +'%Y%m%d') dev2stage
+          pr_title=【定期実行】$(date +'%Y%m%d')_dev2stage
           PULL_REQUEST_URI=$(gh pr create -B main -t "$(pr_title)" -b "")
           echo "PULL_REQUEST_URI=PULL_REQUEST_URI" >> $GITHUB_OUTPUT
