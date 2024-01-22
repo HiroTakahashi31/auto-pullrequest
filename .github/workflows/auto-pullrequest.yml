@@ -21,6 +21,8 @@ jobs:
         id: create-pull-request
         env:
           GH_TOKEN: ${{ github.token }}
+          TZ: 'Asia/Tokyo'
         run: |
-          PULL_REQUEST_URI=$(gh pr create -B main -t 【定期実行】dev2stage -b "")
+          echo "CURRENT_DATETIME=$(date +'%Y%m%d)" >> $GITHUB_ENV
+          PULL_REQUEST_URI=$(gh pr create -B main -t 【定期実行】${{ env.CURRENT_DATETIME }}dev2stage -b "")
           echo "PULL_REQUEST_URI=PULL_REQUEST_URI" >> $GITHUB_OUTPUT
