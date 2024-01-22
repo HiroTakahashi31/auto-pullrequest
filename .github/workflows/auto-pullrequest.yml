@@ -21,7 +21,6 @@ jobs:
         id: create-pull-request
         env:
           GH_TOKEN: ${{ github.token }}
-          TZ: 'Asia/Tokyo'
         run: |
           gh pr create -B main -t "`TZ=Asia/Tokyo date "+%Y%m%d"`【定期実行】dev2stage" -b ""
           
