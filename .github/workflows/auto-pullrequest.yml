@@ -23,4 +23,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           PULL_REQUEST_URI=$(gh pr create -B main -t 【定期実行】dev2stage -b "")
-          echo "::set-output name=PULL_REQUEST_URI::$PULL_REQUEST_URI"
+          echo "PULL_REQUEST_URI=PULL_REQUEST_URI" >> $GITHUB_OUTPUT
