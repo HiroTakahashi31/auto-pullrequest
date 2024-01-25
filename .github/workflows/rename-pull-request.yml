@@ -1,0 +1,24 @@
+# https://qiita.com/st5e_jp/items/d90c377c8a82300734a2
+name: pull_request title change
+on:
+  pull_request:
+    types: [opened, reopened]
+    branches:
+      - main
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+jobs:
+  release_edit_title:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Edit Pull Request Title
+        run: |
+          date=`TZ=Asia/Tokyo date "+%Y%m%d"`
+
+          base_branch_name=${{github.event.pull_request.base.ref}}
+          gh pr edit ${{github.event.pull_request.number}} --title "Release Produciton $date"
+
