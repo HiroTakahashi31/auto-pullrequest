@@ -27,7 +27,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh pr create -B ${{env.TO}} -t "`TZ=Asia/Tokyo date "+%Y%m%d"`【定期実行】dev2stage" -b ""
-      - name: fail
-        run: echo "called failed"
+      - run: echo "called failed"
         if: ${{failure()}}
         
