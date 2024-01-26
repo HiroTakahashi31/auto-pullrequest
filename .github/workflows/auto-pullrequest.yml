@@ -23,7 +23,7 @@ jobs:
           ref: ${{env.FROM}}
       - name: Count Diff
         id: count-diff
-        run: echo "count=$(git diff origin/${{env.FROM}}..origin/${{env.TO}} --name-only | wc -l)" >> $GITHUB_OUTPUT
+        run: echo "count=$(git diff origin/${{env.FROM}}...origin/${{env.TO}} --name-only | wc -l)" >> $GITHUB_OUTPUT
       - name: 【定期実行】Create Pull Request dev2stage
         id: create-pull-request
         if: steps.count-diff.outputs.count > 0
