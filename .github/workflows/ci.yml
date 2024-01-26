@@ -20,9 +20,9 @@ jobs:
     steps:
       - name: Run
         uses: actions-ecosystem/action-regex-match@v2
-        id: regex
+        id: regex-match
         with:
           text: ${{github.event.pull_request.title}}
           regex: '^(feat:|fix:|perf:)'
       - run: exit 1
-        if: ${{failure()}}
+        if: ${{steps.regex-match.outputs.match == ''}}
