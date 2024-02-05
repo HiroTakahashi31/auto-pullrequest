@@ -26,5 +26,5 @@ jobs:
         id: create-pull-request
         env:
           GH_TOKEN: ${{ github.token }}
-        run: echo "> [!IMPORTANT] \n plz use create merge" | gh pr create -B ${{env.TO}} -t "`TZ=Asia/Tokyo date "+%Y%m%d"`【定期実行】dev2stage" -F=-
+        run: echo -e "> [!IMPORTANT]\n> plz use create merge" | gh pr create -B ${{env.TO}} -t "`TZ=Asia/Tokyo date "+%Y%m%d"`【定期実行】dev2stage" -F=-
         
