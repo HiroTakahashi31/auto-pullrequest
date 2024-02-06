@@ -9,20 +9,22 @@ permissions:
   contents: write
   pull-requests: write
 
+env:
+  FROM: develop
+  TO: main
+
 jobs:
   auto-merge-dev2stage:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
-          ref: develop
+          fetch-depth: 0
+          ref: ${{env.FROM}}
       - name: 【定期実行】Create Pull Request dev2stage
         id: create-pull-request
         env:
           GH_TOKEN: ${{ github.token }}
-        run: |
-          gh pr create -B main -t "`TZ=Asia/Tokyo date "+%Y%m%d"`【定期実行】dev2stage" -b ""
-          
-          # PULL_REQUEST_URI=$(gh pr create -B main -t "【定期実行】dev2stage" -b "")
-          # echo "PULL_REQUEST_URI=PULL_REQUEST_URI" >> $GITHUB_OUTPUT
+        run: echo -e "> [!IMPORTANT]\n> plz use \`create\` merge" | gh pr create -B ${{env.TO}} -t "`TZ=Asia/Tokyo date "+%Y%m%d"`【定期実行】dev2stage" -F=-
+        
